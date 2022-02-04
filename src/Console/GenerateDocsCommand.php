@@ -28,7 +28,13 @@ class GenerateDocsCommand extends Command
      */
     public function handle()
     {
-        $this->info('Regenerating docs');
-        Generator::generateDocs();
+        try {
+            $this->info('Generating docs...');
+            Generator::generateDocs();
+            $this->info('Docs generated.');
+        } catch (\Throwable $exception) {
+            $this->error('Operation cancelled because:');
+            $this->error($exception->getMessage());
+        }
     }
 }
