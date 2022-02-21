@@ -23,8 +23,6 @@ class GenerateDocsCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -35,6 +33,8 @@ class GenerateDocsCommand extends Command
         } catch (\Throwable $exception) {
             $this->error('Operation cancelled because:');
             $this->error($exception->getMessage());
+
+            return 1;
         }
     }
 }
